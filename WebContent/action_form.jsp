@@ -9,9 +9,11 @@
 <body>
 <h2>Open the family news page, hit CTRL+A, CTRL+C and paste it into the field below.</h2>
 <form action="action_form_process.jsp" method="POST">
-Input: <input type="text" name="username">
+Input: 
 <br />
+<textarea name="username" rows="50" cols="100"></textarea>
 <br />
+
 <input type="submit" value="Submit" />
 </form>
 </body>
