@@ -18,7 +18,7 @@
    %>
    <% out.println(stringFromJava); %>
 </p>
-<form action="action_form.jsp" method="POST">
+<form action="index.jsp" method="POST">
 	<input type="submit" value="Home" />
 </form> 
 </body>
