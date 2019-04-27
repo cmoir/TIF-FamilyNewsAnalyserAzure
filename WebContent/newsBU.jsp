@@ -10,7 +10,7 @@
 </head>
 
 <BODY>
-<h3>silenz.org - online tools for <a href="http://www.imperialconflict.com/">Imperial Conflict</a></h3>
+<h3>silenz.remake - online tools for <a href="http://www.imperialconflict.com/">Imperial Conflict</a></h3>
 <hr>
 
 <hr>

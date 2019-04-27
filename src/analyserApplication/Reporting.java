@@ -1,4 +1,5 @@
 package analyserApplication;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -159,6 +160,31 @@ public class Reporting {
 			//System.out.println(val.getValue() + " " + text + " " + "#" + val.getKey());
 		}
 		return outReport;
+	}
+	
+	public static String countAndPrintFrequenciesUnits(ArrayList<Units> newsArray) {
+		String outReport = "";
+		//outReport = appendString(outReport,"<br>--------------------");
+		
+		
+		Map<String, Integer> hm = new HashMap<String, Integer>();
+
+		for (Units i : newsArray) {
+			Integer j = hm.get(i.getUnitType());
+			hm.put(i.getUnitType(), (j == null) ? i.getAmount() : j + i.getAmount());
+		}
+		// displaying the occurrence of elements in the arraylist
+		for (Map.Entry<String, Integer> val : hm.entrySet()) {
+			outReport = appendString(outReport,"<br>"+val.getValue() + " " + val.getKey() + " built");
+			//System.out.println(val.getValue() + " " + text + " " + "#" + val.getKey());
+		}
+		return outReport;
+	}
+	
+	public static void printArrayUnits(ArrayList<Units> unitArray) {
+		for (Units unitNews : unitArray) {
+			System.out.println(unitNews.getLineNumber() + " " + unitNews.getUnitType() + " " + unitNews.getAmount());
+		}
 	}
 	
 	public static String printArray(ArrayList<PlanetNews> newsArray) {

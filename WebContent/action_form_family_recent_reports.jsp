@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <%@ page import="analyserApplication.FamilyNewsAnalyser"%>
+ <%@ page import="analyserApplication.NewsAnalyser"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,8 +22,8 @@ window.appInsights=appInsights,appInsights.queue&&0===appInsights.queue.length&&
  
 <p>
    <%
-   String inputText = request.getParameter("username");
-   String stringFromJava = FamilyNewsAnalyser.runFamNewsAnalyser(inputText); 
+   String inputText = request.getParameter("news");
+   String stringFromJava = NewsAnalyser.runRecentReportAnalyser(inputText); 
    %>
    <% out.println(stringFromJava); %>
 </p>

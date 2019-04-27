@@ -1,4 +1,5 @@
 package analyserApplication;
+
 import static java.util.stream.Collectors.*;
 
 import java.awt.List;

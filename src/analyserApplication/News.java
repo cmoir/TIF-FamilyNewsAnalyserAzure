@@ -1,5 +1,6 @@
 package analyserApplication;
 
+
 public class News {
 	protected int lineNumber;
 	protected String newsEvent;

@@ -1,4 +1,5 @@
 package analyserApplication;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -10,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-public class FamilyNewsAnalyser {
+public class NewsAnalyser {
 	//input file
 	//static int i = 0;
 	//Regex for extracting data
@@ -20,8 +21,19 @@ public class FamilyNewsAnalyser {
 	static String eventTick = "(\\w+)[\\s]+"+lineRegx+"T-(\\d{1,4})[\\s]+";
 	
 	public static void main(String[] args) throws IOException {
-		String famNews = readFileLineByLine("famNews1.txt");
-		runFamNewsAnalyser(famNews);
+		//sample reports for debug only
+		String famNews = readFileLineByLine("famNews5.txt");
+		String infil = readFileLineByLine("infil4.txt");
+		//String infil = readFileLineByLine("RecentReport.txt");
+		
+		
+		//print results in Console
+		//String debugConsole = runFamNewsAnalyser(famNews);
+		String debugConsole = runRecentReportAnalyser(infil);
+		debugConsole = debugConsole.replace("<br>","\r\n");
+		debugConsole = debugConsole.replace("&nbsp","\t");
+		System.out.println(debugConsole);
+	
 	}
 	
 	public static String runFamNewsAnalyser(String famNews) {
@@ -34,10 +46,31 @@ public class FamilyNewsAnalyser {
 		return report;
 	}
 	
-	public static String testReturnString(String famNews) {
+	public static String runRecentReportAnalyser(String infil) {
 		
-		return famNews;
+		infil = addLineNumber(infil);
+		String report = reportRecentReport(infil);
+		
+		return report;
 	}
+	
+	public static String reportRecentReport(String infil) {
+		String report = "";
+		ArrayList<Units> unitArray = new ArrayList<Units>();
+		//Pattern unitPattern = Pattern.compile("(?s)\\s(\\d+) T-\\d+: Construction completed[\\s]+We have built (\\d+) (\\w+).");	//works infil
+		//Pattern unitPattern = Pattern.compile("(?s)\\s(\\d+)[\\s]+T-\\d+\\w[\\s]+Construction completed[\\s]+We have built (\\d+) (\\w+).");	//works recent report
+		Pattern unitPattern = Pattern.compile("(?s)\\s(\\d+) +T-\\d+.[\\s]+Construction completed[\\s]+We have built (\\d+) (\\w+).");	//works with both
+		
+		unitArray = ExtractData.extractUnitData(unitPattern, infil);
+		Reporting.printArrayUnits(unitArray);
+		String unitReport = Reporting.countAndPrintFrequenciesUnits(unitArray);
+		report = Reporting.appendString(report,unitReport);
+		return report;
+		}
+	
+	
+	
+	
 		
 	public static String reportPlanetSections(String famNews) {
 		String report = "";
@@ -60,7 +93,7 @@ public class FamilyNewsAnalyser {
 		//explored
 		exploreArray = ExtractData.extractPlanetData(explorePattern, famNews);
 		String exploreReport = Reporting.printSummaryPlanets(exploreArray, "Explored");
-		System.out.println(exploreReport);
+		//System.out.println(exploreReport);
 		report = Reporting.appendString(report,exploreReport);
 		//String exploreList = Reporting.printArrayExplored(exploreArray);	
 		//report = Reporting.appendString(report,exploreList);
@@ -70,14 +103,14 @@ public class FamilyNewsAnalyser {
 		//Capture
 		captureArray = ExtractData.extractPlanetData(capturePattern, famNews);
 		String captureReport = Reporting.printSummaryPlanets(captureArray, "Captures");
-		System.out.println(captureReport);
+		//System.out.println(captureReport);
 		report = Reporting.appendString(report,captureReport);
 		//String capList = Reporting.printArrayExplored(captureArray);	
 		//report = Reporting.appendString(report,capList);
 		
 		defeatsArray = ExtractData.extractPlanetData(defeatPattern, famNews);
 		String defeatsReport = Reporting.printSummaryPlanets(defeatsArray, "Defeats");
-		System.out.println(defeatsReport);
+		//System.out.println(defeatsReport);
 		report = Reporting.appendString(report,defeatsReport);
 	
 		//blow ups Attacks
@@ -113,15 +146,15 @@ public class FamilyNewsAnalyser {
 		
 		
 		String missingReport = Reporting.printSummaryPlanets(missingArray, "Planets still missing");
-		System.out.println(missingReport);
+		//System.out.println(missingReport);
 		report = Reporting.appendString(report,missingReport);
 		
 		String openRetakesReport =Reporting.printOpenRetakes(retakesArray);
-		System.out.println(openRetakesReport);
+		//System.out.println(openRetakesReport);
 		report = Reporting.appendString(report,openRetakesReport);
 		
 		String cleanRetakesReport = Reporting.printOpenRetakesClean(retakesArray);
-		System.out.println(cleanRetakesReport);
+		//System.out.println(cleanRetakesReport);
 		report = Reporting.appendString(report,cleanRetakesReport);
 		
 		
@@ -146,12 +179,12 @@ public class FamilyNewsAnalyser {
 		
 		String aidSentReport = Reporting.printSummaryAidSent(aidArray, "aid");
 		report = Reporting.appendString(report,aidSentReport);
-		System.out.println(aidSentReport);
+		//System.out.println(aidSentReport);
 		
 		
 		String aidReceivedReport = Reporting.printSummaryAidReceived(aidArray, "aid");
 		report = Reporting.appendString(report,aidReceivedReport);
-		System.out.println(aidReceivedReport);
+		//System.out.println(aidReceivedReport);
 		
 		return report;
 	}

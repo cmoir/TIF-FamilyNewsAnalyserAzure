@@ -1,4 +1,5 @@
 package analyserApplication;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -202,6 +203,19 @@ public class ExtractData {
 		return newsArray;
 	}
 
+	public static ArrayList<Units> extractUnitData(Pattern unitPattern, String infil) {
+		ArrayList<Units> newsArray = new ArrayList<Units>();
+		Matcher news = unitPattern.matcher(infil);
+		while (news.find()) {
+			int line = Integer.parseInt(news.group(1));
+			int amount = Integer.parseInt(news.group(2));
+			String units = news.group(3);
+			Units nextLineOfNews = new Units(line, amount, units);
+			newsArray.add(nextLineOfNews);
+		}
+		return newsArray;
+	}
+	
 	
 	
 }

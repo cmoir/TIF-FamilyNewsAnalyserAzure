@@ -11,21 +11,24 @@
 </head>
 
 <BODY>
-<h3>silenz.org - online tools for <a href="http://www.imperialconflict.com/">Imperial Conflict</a></h3>
+<h3>silenz copy - online tools for <a href="http://www.imperialconflict.com/">Imperial Conflict</a></h3>
 <hr>
 
 <hr>
-<a href="news.jsp">Family News Analyzer</a> - 
+<a href="index.jsp">Family News Analyzer</a> - 
 <a href="reports.jsp">Recent Reports Summarizer</a> - 
-<a href="science.jsp">Science</a> - 
 
 <hr>
 	<h3>recent reports summary</h3>
-	<h4>Summarizes recent reports. Either your own or those of enemies aquired through ops.</h4>
+	<h4>Summarizes recent reports. Either your own or those of enemies acquired through ops.</h4>
 	
 	Paste any recent reports into the field below and hit Format!
+	<br>
+	
+	<strong>Only Unit counts done so far.<strong>
+	
 	<P>
-	<FORM method="POST" action="reports.php">
+	<FORM method="POST" action="action_form_family_recent_reports.jsp">
 		
 	<TEXTAREA name="news" cols=50 rows=5>
 	</TEXTAREA>
@@ -50,5 +53,4 @@
 <br>
 <br>
 <br>
-<a href="imprint.php">imprint</a>
 </div>
