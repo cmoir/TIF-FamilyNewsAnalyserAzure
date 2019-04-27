@@ -1,4 +1,4 @@
-package analyserApplication;
+package FamilyNews;
 
 import java.awt.List;
 import java.util.ArrayList;
