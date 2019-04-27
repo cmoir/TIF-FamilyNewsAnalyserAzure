@@ -31,7 +31,7 @@ public class NewsAnalyser {
 		//print results in Console
 		//String debugConsole = runFamNewsAnalyser(famNews);
 		//String debugConsole = runRecentReportAnalyser(infil);
-		String debugConsole=  PlanetFormaterr.runPlanetFormaterr(planetList); 
+		String debugConsole=  PlanetFormater.runPlanetFormaterr(planetList); 
 		
 		
 		debugConsole = debugConsole.replace("<br>","\r\n");

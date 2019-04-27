@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PlanetFormaterr {
+public class PlanetFormater {
 	
 	
 public static String runPlanetFormaterr(String planetList) {
