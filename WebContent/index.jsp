@@ -25,6 +25,7 @@ window.appInsights=appInsights,appInsights.queue&&0===appInsights.queue.length&&
 <hr>
 <a href="index.jsp">Family News Analyzer</a> - 
 <a href="reports.jsp">Recent Reports Summarizer</a> - 
+<a href="format.jsp">Format Planet Lists</a> -
 <hr>
 	<h3>family news analyzer</h3>
 	Open the family news page, hit CTRL+A on it, CTRL+C and paste it into the field below.<br>

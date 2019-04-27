@@ -1,12 +1,10 @@
 
 <HTML>
 <head>
-<title>recent reports summarizer</title>
-<meta name="description" lang="de" content="A tool to sum up your recent reports.">
+<title>format planet lists</title>
+<meta name="description" lang="de" content="A tool to make clean planet lists.">
 <meta name="keywords" content="imperial conflict,recent,reports,summary,php,MMOG,massive,multiplayer,online,game">
 <link REL=STYLESHEET HREF="ic.css" TYPE="text/css">
-
-
 
 </head>
 
@@ -20,18 +18,17 @@
 <a href="format.jsp">Format Planet Lists</a> -
 
 <hr>
-	<h3>recent reports summary</h3>
-	<h4>Summarizes recent reports. Either your own or those of enemies acquired through ops.</h4>
+	<h3>Format Planet Lists</h3>
+	<h4>Formats planet lists so they are nice and clean.</h4>
 	
-	Paste any recent reports into the field below and hit Format!
+	Paste any planet lists and click format and it should make a clean list!
 	<br>
 	
-	<strong>Only Unit counts done so far.<strong>
 	
 	<P>
-	<FORM method="POST" action="action_form_family_recent_reports.jsp">
+	<FORM method="POST" action="action_form_format.jsp">
 		
-	<TEXTAREA name="news" cols=50 rows=5>
+	<TEXTAREA name="planetList" cols=50 rows=5>
 	</TEXTAREA>
 	<BR>
 	<INPUT type="submit" value="Format!">
