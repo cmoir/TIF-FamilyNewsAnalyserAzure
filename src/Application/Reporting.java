@@ -186,9 +186,80 @@ public class Reporting {
 		return outReport;
 	}
 	
+	public static String countAndPrintFrequenciesUnitsLost(ArrayList<Units> unitArray) {
+		String outReport = "";
+		outReport = appendString(outReport,"<br><br>--------------------<br>- Unit Lost Detailed Report  -<br>--------------------<br>");
+		int previousTurn = 0;
+		int soldiers = 0;
+		int droids = 0;
+		int fighter = 0;
+		for (Units i : unitArray) {
+			if (previousTurn == i.getTurnOccurred())
+			{	
+					if (i.getUnitType().equals("soldiers")) {
+						soldiers = soldiers + i.getAmount();
+					}
+					if (i.getUnitType().equals("droids")) {
+						droids = droids + i.getAmount();
+					}
+					if (i.getUnitType().equals("fighters")) {
+						fighter = fighter + i.getAmount();
+					}
+			}
+			else
+			{
+				if (soldiers > 0 || fighter > 0 || droids > 0)
+				{
+					outReport = appendString(outReport,"<br>"+fighter+ " Fighters "+soldiers+" Soldiers "+droids+ " Droids (T-" + previousTurn+")");
+				}
+				
+				soldiers = 0;
+				droids = 0;
+				fighter = 0;
+				previousTurn = i.getTurnOccurred();
+				if (i.getUnitType().equals("soldiers")) {	
+					soldiers = soldiers + i.getAmount();
+				//outReport = appendString(outReport,"<br>"+i.getAmount()+ " Soldiers Lost (T-" + i.getTurnOccurred()+")");
+				}
+				if (i.getUnitType().equals("droids")) {
+					droids = droids + i.getAmount();
+				//outReport = appendString(outReport,"<br>"+i.getAmount()+ " Droids Lost (T-" + i.getTurnOccurred()+")");
+				}
+				if (i.getUnitType().equals("fighters")) {
+					fighter = fighter + i.getAmount();
+				//outReport = appendString(outReport,"<br>"+i.getAmount()+ " Fighters Lost (T-" + i.getTurnOccurred()+")");
+				}
+			}			
+		}
+		if (soldiers > 0 || fighter > 0 || droids > 0)
+			{outReport = appendString(outReport,"<br>"+fighter+ " Fighters "+soldiers+" Soldiers "+droids+ " Droids (T-" + previousTurn+")");}
+			return outReport;
+	}
+	
+	
+	public static String countAndPrintFrequenciesUnitsLostSummary(ArrayList<Units> newsArray) {
+		String outReport = "";
+		outReport = appendString(outReport,"<br><br>--------------------<br>-  Unit Lost Summary  -<br>--------------------<br>");
+		
+		Map<String, Integer> hm = new HashMap<String, Integer>();
+
+		for (Units i : newsArray) {
+			Integer j = hm.get(i.getUnitType());
+			hm.put(i.getUnitType(), (j == null) ? i.getAmount() : j + i.getAmount());
+		}
+		// displaying the occurrence of elements in the arraylist
+		for (Map.Entry<String, Integer> val : hm.entrySet()) {
+			outReport = appendString(outReport,"<br>"+val.getValue() + " " + val.getKey());
+			//System.out.println(val.getValue() + " " + text + " " + "#" + val.getKey());
+		}
+		return outReport;
+	}
+	
+	
+	
 	public static String countAndPrintFrequenciesBuildings(ArrayList<Buildings> newsArray) {
 		String outReport = "";
-		outReport = appendString(outReport,"<br>--------------------<br>-     Building Summary     -<br>--------------------<br>");
+		outReport = appendString(outReport,"<br><br>--------------------<br>-     Building Summary     -<br>--------------------<br>");
 		
 		Map<String, Integer> hm = new HashMap<String, Integer>();
 
@@ -210,7 +281,19 @@ public class Reporting {
 		
 		for (Buildings i : newsArray) {
 			if (i.getBuildingType().equals("Laser")) {
-				outReport = appendString(outReport,"<br>"+i.getAmount()+ " Laser built on "+i.getPlanetCoords() +" T-" + i.getTurnOccurred());
+				outReport = appendString(outReport,"<br>"+i.getAmount()+ " Laser(s) built on "+i.getPlanetCoords() +"   (T-" + i.getTurnOccurred()+")");
+			}
+		}
+		return outReport;
+	}
+	
+	public static String portalReport(ArrayList<Buildings> newsArray) {
+		String outReport = "";
+		outReport = appendString(outReport,"<br>--------------------<br>-     Portal Report     -<br>--------------------<br>");
+		
+		for (Buildings i : newsArray) {
+			if (i.getBuildingType().equals("Portal")) {
+				outReport = appendString(outReport,"<br>Portal built on "+i.getPlanetCoords() +"  (T-" + i.getTurnOccurred()+")");
 			}
 		}
 		return outReport;
@@ -250,6 +333,25 @@ public class Reporting {
 		String combinedText = text1 + text2;
 		return combinedText;
 	}
+	
+	
+	public static String unportaledPlanets(ArrayList<Buildings> portalList, ArrayList<PlanetNews> exploreArray) {
+		Boolean match = false;
+		String outReport = "<br><br>--------------------<br>- List of unportalled planets (explored only) - <br>--------------------<br>";		
+		for (PlanetNews explored : exploreArray) {
+				for (Buildings portals : portalList) {
+					if (portals.getPlanetCoords().equals(explored.getPlanetCoords()) && portals.getLineNumber() < explored.getLineNumber()) {
+						match = true;
+						break;
+						}
+				}
+				if (!match) {
+					outReport = appendString(outReport,"<br>" + explored.getPlanetCoords() +" - Explored Tick "+ explored.getTurnOccurred());
+				}		
+				match = false;
+			}
+		return outReport;
+	}	
 	
 
 	

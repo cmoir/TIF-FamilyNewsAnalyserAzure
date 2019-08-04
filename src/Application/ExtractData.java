@@ -1,6 +1,7 @@
 package Application;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -230,6 +231,29 @@ public class ExtractData {
 		}
 		return newsArray;
 	}
+	
+	public static ArrayList<Units> extractLostUnitData(Pattern unitPattern, String infil) {
+		ArrayList<Units> newsArray = new ArrayList<Units>();
+		Matcher news = unitPattern.matcher(infil);
+		while (news.find()) {
+			int line = Integer.parseInt(news.group(1));
+			int turn = Integer.parseInt(news.group(2));
+			
+			for(int i=1;i<=10;i = i+2){
+				String checkAmount = news.group(i+2);
+				if (checkAmount.isEmpty())
+					{}
+				else {
+					int amount = Integer.parseInt(checkAmount);
+					String units = news.group(i+3);
+					Units nextLineOfNews = new Units(line, turn, amount, units);
+					newsArray.add(nextLineOfNews);
+				}
+			}
+		}		
+		return newsArray;
+	}
+	
 	//"(?s)\\s(\\d+) +T-(\\d+)[:\\s]+[Infrastructure|Buildings complete]+[\\s]+We have built (\\d+) (\\w+) on (\\d+) in the (\\d+):(\\d+) system."); //works with both
 	public static ArrayList<Buildings> extractBuildingData(Pattern buildingPattern, String infil) {
 		ArrayList<Buildings> newsArray = new ArrayList<Buildings>();
@@ -249,6 +273,23 @@ public class ExtractData {
 		return newsArray;
 	}
 	
+	public static ArrayList<Buildings> extractPortalData(Pattern buildingPattern, String infil) {
+		ArrayList<Buildings> newsArray = new ArrayList<Buildings>();
+		Matcher news = buildingPattern.matcher(infil);
+		while (news.find()) {
+			int line = Integer.parseInt(news.group(1));
+			int turn = Integer.parseInt(news.group(2));
+			int planetNo = Integer.parseInt(news.group(3));
+			//String buildings = news.group(4);
+			//String planetCoords = news.group(5);
+			int planetX = Integer.parseInt(news.group(4));
+			int planetY = Integer.parseInt(news.group(5));
+			String planetCoords = (planetX + "," + planetY + ":" + planetNo);
+			Buildings nextLineOfNews = new Buildings(line, turn, 1, "Portal", planetCoords);
+			newsArray.add(nextLineOfNews);
+		}
+		return newsArray;
+	}
 	
 
 		

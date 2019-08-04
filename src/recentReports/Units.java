@@ -16,8 +16,16 @@ public class Units extends CoreInfo implements Comparable<Units> {
 	protected String unitType;
 	
 	
+	
 	public Units(int lineNumber, int amount, String unitType) {
 		super(lineNumber, 0);
+		this.lineNumber = lineNumber;
+		this.amount = amount;
+		this.unitType = unitType;
+		}
+	
+	public Units(int lineNumber, int turn, int amount, String unitType) {
+		super(lineNumber, turn);
 		this.lineNumber = lineNumber;
 		this.amount = amount;
 		this.unitType = unitType;
@@ -37,9 +45,16 @@ public class Units extends CoreInfo implements Comparable<Units> {
 		this.unitType = unitType;
 	}	
 	
-	public int compareTo(Units compareLine) {
-		int compareQuantity = ((Units) compareLine).getLineNumber(); 
-		return compareQuantity - this.lineNumber;
+	public int getTurn() {
+		return turnOccurred;
+	}
+	
+	public void setTurn(int turn) {
+		this.turnOccurred = turn;
+	}	
+	public int compareTo(Units compareTurn) {
+		int compareQuantity = ((Units) compareTurn).getTurnOccurred(); 
+		return compareQuantity - this.turnOccurred;
 	}
 	
 	

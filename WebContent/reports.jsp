@@ -35,7 +35,7 @@ window.appInsights=appInsights,appInsights.queue&&0===appInsights.queue.length&&
 	Paste any recent reports into the field below and hit Format!
 	<br>
 	
-	<strong>Only Unit counts done so far.<strong>
+	<strong>Unit counts, lasers, building, explorations, unit losses (in report but still debugging!)<strong>
 	
 	<P>
 	<FORM method="POST" action="action_form_family_recent_reports.jsp">
