@@ -26,7 +26,7 @@ public static String formatStandardList(Pattern planetPattern, String famNews) {
 	String report = "";
 	while (news.find()) {
 		String planet = news.group(1);
-		report = report+planet+"<br>";}
+		report = report+planet+"\r\n";}
 	return report;
 	}
 	
@@ -38,7 +38,7 @@ public static String formatNewsList(Pattern planetPattern, String famNews) {
 			int planetX = Integer.parseInt(news.group(2));
 			int planetY = Integer.parseInt(news.group(3));
 			String planetCoords = (planetX + "," + planetY + ":" + planetNo);
-			report = report+planetCoords+"<br>";
+			report = report+planetCoords+"\r\n";
 		}
 	return report;
 }
