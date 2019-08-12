@@ -3,6 +3,7 @@
 <title>Family News Analyzer</title>
 <meta name="description" lang="de" content="A tool to sum up and analyse the famnews.">
 <meta name="keywords" content="imperial conflict,family,news,analyzer,summary,php,MMOG,massive,multiplayer,online,game">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link REL=STYLESHEET HREF="ic.css" TYPE="text/css">
 
 
@@ -22,7 +23,7 @@
 	Open the family news page, hit CTRL+A on it, CTRL+C and paste it into the field below.<br>
 	<br>
 	<FORM method="POST" action="action_form_familynews.jsp">
-	<TEXTAREA name="news" cols=50 rows=5>
+	<TEXTAREA name="news" cols=40 rows=5>
 	</TEXTAREA>
 	<br>
 

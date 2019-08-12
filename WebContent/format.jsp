@@ -4,6 +4,7 @@
 <title>format planet lists</title>
 <meta name="description" lang="de" content="A tool to make clean planet lists.">
 <meta name="keywords" content="imperial conflict,recent,reports,summary,php,MMOG,massive,multiplayer,online,game">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link REL=STYLESHEET HREF="ic.css" TYPE="text/css">
 
 </head>
